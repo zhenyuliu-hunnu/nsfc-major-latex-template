@@ -1,0 +1,120 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref} % 让引用可点击（不显蓝框）
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+
+\setmainfont{Times New Roman}
+\setCJKmainfont{STKaitiSC-Regular}[BoldFont=STKaitiSC-Bold]
+\setCJKfamilyfont{song}{STSongti-SC-Regular}[BoldFont=STSongti-SC-Bold]
+\renewcommand{\songti}{\CJKfamily{song}}
+
+% 设置正文字体为楷体小四
+\zihao{-4}
+
+% 设置固定行距为22磅
+\setlength{\baselineskip}{22pt}
+\linespread{1}
+
+% 页眉页脚设置：无页眉，底部居中页码
+\pagestyle{fancy}
+\fancyhf{} % 清空页眉页脚
+\fancyfoot[C]{\thepage} % 底部居中页码
+\renewcommand{\headrulewidth}{0pt} % 移除页眉横线
+
+% 让 section 显示成：三、课题设计论证
+\ctexset{
+  section={
+    format=\bfseries\zihao{-4},
+    name={},
+    number=\arabic{section}\ ,
+    aftername=\hspace{0em},
+    beforeskip=8pt,
+    afterskip=0pt,
+    indent=2em
+  },
+  subsection={
+    format=\bfseries\zihao{-4},
+    number=\arabic{section}.\arabic{subsection}\ ,
+    name={},
+    aftername=\hspace{0em},
+    beforeskip=8pt,
+    afterskip=0pt,
+    indent=2em
+  },
+  subsubsection={
+    format=\bfseries\zihao{-4},
+    number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\ ,
+    name={},
+    aftername=\hspace{0em},
+    beforeskip=8pt,
+    afterskip=0pt,
+    indent=2em
+  }
+}
+
+% 可跨页方框
+\newtcolorbox{myframe}{
+  breakable,
+  colback=white,
+  colframe=black,
+  boxrule=0.8pt,
+  arc=0pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt,
+  before upper={\parindent=2em \zihao{-4} \setlength{\baselineskip}{22pt} },
+  height fixed for=all,
+  height fill
+}
+
+% 引用
+\usepackage[backend=biber,style=gb7714-2015ay,gbnamefmt=lowercase,maxcitenames=2,mincitenames=1, sortcites=false,sorting=gbynta]{biblatex}
+
+\DefineBibliographyStrings{english}{andincite = {和},andincitecn = {和},andothersincite = {等},andothersincitecn = {等}, }
+
+\DeclareDelimFormat[textcite,citet]{andothersdelim}{}%\space
+
+\addbibresource{references.bib}
+
+\begin{document}
+
+% 根据前面内容的页码确定起始页码
+\setcounter{page}{1}
+
+\include{table_4.tex}
+
+\clearpage
+
+\include{table_5.tex}
+	
+\clearpage
+
+\include{table_6.tex}
+
+\clearpage
+
+\include{table_7.tex}
+
+\clearpage
+
+\include{sub1.tex}
+
+\clearpage
+
+% sub2 没有 表8 相关文字，故独立
+\include{sub2.tex}
+
+% 如有更多子课题请创建新文件，并复制 sub2.tex 的内容并在下面 include
+
+\include{table_9.tex}
+
+\include{table_10.tex}
+
+\end{document}
