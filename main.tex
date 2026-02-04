@@ -17,6 +17,24 @@
 \setCJKfamilyfont{song}{STSongti-SC-Regular}[BoldFont=STSongti-SC-Bold]
 \renewcommand{\songti}{\CJKfamily{song}}
 
+% 设置图片编号格式为"图1-3"（章节号可手动定义）
+\newcounter{figchapter} % 定义独立的图片章节计数器
+\setcounter{figchapter}{1} % 默认从1开始，可用 \setcounter{figchapter}{4} 修改
+\renewcommand{\thefigure}{\arabic{figchapter}-\arabic{figure}}
+\renewcommand{\figurename}{图}
+\captionsetup[figure]{labelsep=space} % 编号与标题之间用空格分隔
+
+% 提供命令：\setfigchapter{4} 设置图片章节号，同时重置figure计数器
+\newcommand{\setfigchapter}[1]{%
+  \setcounter{figchapter}{#1}%
+  \setcounter{figure}{0}%
+}
+
+% 每个section重置figure计数器
+\makeatletter
+\@addtoreset{figure}{section}
+\makeatother
+
 % 设置正文字体为楷体小四
 \zihao{-4}
 
